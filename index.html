@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Area 31 Industries | Vehicle Customisation & Restoration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0099ff; 
+            --bg-dark: #0a0a0a;
+            --bg-panel: #161616;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, .nav-links {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(0, 0, 0, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo-container img {
+            height: 60px;
+            display: block;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li { margin-left: 40px; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary-blue); }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000'); 
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        .hero img {
+            max-width: 600px;
+            width: 90%;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        .cta-btn {
+            padding: 18px 45px;
+            background: transparent;
+            color: var(--text-white);
+            border: 2px solid var(--primary-blue);
+            text-decoration: none;
+            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            transition: 0.4s ease;
+        }
+
+        .cta-btn:hover {
+            background: var(--primary-blue);
+            box-shadow: 0 0 30px var(--primary-blue);
+            color: #000;
+        }
+
+        /* Content Sections */
+        .section { padding: 100px 10%; }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            display: inline-block;
+            border-bottom: 4px solid var(--primary-blue);
+            padding-bottom: 10px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+
+        .highlight { color: var(--primary-blue); font-weight: bold; }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-panel);
+            padding: 40px;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            background: #1e1e1e;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Contact Section */
+        .contact-flex {
+            display: flex;
+            gap: 60px;
+            background: var(--bg-panel);
+            padding: 60px;
+            border-radius: 8px;
+        }
+
+        .contact-info { flex: 1; }
+        .contact-form { flex: 1.5; }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+        }
+
+        .submit-btn {
+            padding: 15px 40px;
+            background: var(--primary-blue);
+            border: none;
+            color: #000;
+            font-family: 'Oswald';
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            background: #000;
+            color: #444;
+        }
+
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
+            .about-content, .contact-flex { grid-template-columns: 1fr; flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-container">
+            <img src="a31.png" alt="Area 31 Industries Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">The Workshop</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <img src="a31.png" alt="Area 31 Industries">
+        <h1>BEYOND FACTORY SPECIFICATION</h1>
+        <a href="#contact" class="cta-btn">INQUIRE NOW</a>
+    </header>
+
+    <section id="about" class="section">
+        <div class="about-content">
+            <div class="about-text">
+                <h2 style="font-family: 'Oswald'; margin-bottom: 20px; font-size: 2.5rem;">PRECISION ENGINEERING</h2>
+                <p>Based in <span class="highlight">Norfolk</span>, Area 31 Industries is a specialist automotive workshop dedicated to the art of vehicle perfection.</p>
+                <p>From brand-new RAMs to iconic Classic VWs, our fully secure facility is designed to provide every vehicle the space and attention it deserves.</p>
+                <p>We don't just fix cars; we elevate them. Most of our clients see their vehicles restored to <span class="highlight">better than factory spec</span>.</p>
+            </div>
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=800" alt="Workshop" style="width: 100%; border-radius: 4px;">
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section" style="background: #0f0f0f;">
+        <div class="section-header">
+            <h2>Capabilities</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Custom Modifications</h3>
+                <p>Engine rebuilds and bespoke engineering. If the part you need doesn't exist, we'll manufacture it in our in-house machinery workshop.</p>
+            </div>
+            <div class="service-card">
+                <h3>Restoration</h3>
+                <p>Full-scale restorations with a focus on longevity. We specialize in internals and undersides to keep your vehicle running smoothly for decades.</p>
+            </div>
+            <div class="service-card">
+                <h3>Performance Tuning</h3>
+                <p>Upgrades for suspension, turbos, brakes, and exhausts. Specialized tuning for road, track, or show.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2>Contact The Team</h2>
+        </div>
+        <div class="contact-flex">
+            <div class="contact-info">
+                <h3 style="margin-bottom: 20px;">Ready to Start?</h3>
+                <p style="color: var(--text-gray); margin-bottom: 30px;">Tell us about your vehicle and your goals. Whether it's a minor performance upgrade or a ground-up restoration, we're ready to help.</p>
+                <p><strong>Location:</strong> Norfolk, UK</p>
+                <p><strong>Email:</strong> info@area31.co.uk</p>
+            </div>
+            <div class="contact-form">
+                <form action="#">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="text" placeholder="Vehicle Make & Model">
+                    <textarea rows="6" placeholder="Describe your project..."></textarea>
+                    <button type="submit" class="submit-btn">SEND INQUIRY</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Area 31 Industries | Norfolk, UK</p>
+    </footer>
+
+</body>
+</html>
