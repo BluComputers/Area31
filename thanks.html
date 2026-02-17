@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Received | Area 31 Industries</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0099ff; 
+            --bg-dark: #0a0a0a;
+            --bg-panel: #161616;
+            --text-white: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .success-card {
+            background: var(--bg-panel);
+            padding: 60px 40px;
+            border-radius: 4px;
+            border: 1px solid #333;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .logo {
+            height: 60px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--text-white);
+        }
+
+        p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--primary-blue);
+            color: #000;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* Sub-brand style to match nav */
+        .sub-brand {
+            color: var(--primary-blue);
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 40px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="success-card">
+        <img src="https://raw.githubusercontent.com/BluComputers/Area31/main/a31.png" alt="Area 31 Logo" class="logo">
+        <span class="sub-brand">A JSW GARAGE COMPANY</span>
+        
+        <h1>Message Sent</h1>
+        <p>Thank you for reaching out to Area 31 Industries.<br>We have received your inquiry and a team member will contact you shortly.</p>
+        
+        <a href="index.html" class="back-btn">Return to Site</a>
+    </div>
+
+</body>
+</html>
