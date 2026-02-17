@@ -102,6 +102,30 @@
         .highlight { color: var(--primary-blue); font-weight: bold; }
         .about-img img { width: 100%; border-radius: 4px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 3;
+            border: 1px solid #222;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.4);
+            transition: 0.5s ease;
+        }
+        .gallery-item:hover img {
+            filter: grayscale(0);
+            transform: scale(1.05);
+        }
+
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
         .service-card { background: var(--bg-panel); padding: 40px; border-radius: 4px; transition: 0.3s; border-left: 0 solid var(--primary-blue); }
         .service-card:hover { transform: translateY(-5px); border-left: 5px solid var(--primary-blue); }
@@ -213,6 +237,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="#about">Workshop</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#services">Capabilities</a></li>
             <li><a href="#ram-service">RAM Service Centre</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -236,6 +261,33 @@
                 <p>Based in <span class="highlight">Norfolk</span>, Area 31 Industries is a specialized automotive hub. We bridge the gap between heavy-duty and classic European icons.</p>
                 <p>Our secure facility at Willow Farm Barn is designed for precision engineering, from bespoke engine rebuilds to full ground-up restorations.</p>
             </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="section" style="background: #050505;">
+        <div class="section-header"><h2>Workshop Gallery</h2></div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/485264936_18028780967640605_130103217707288926_n.jpg?stp=dst-jpegr_tt6&_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_ohc=Cs_S2wvDAOYQ7kNvwEfVVQ9&_nc_oc=Adnyiaa0OH6D8NvnyLijSEifFf9vZ3YP5DGLv4U9QyFhrsDV6x8GpRvDIcyZ4hkHFHw&_nc_zt=23&se=-1&_nc_ht=scontent.flhr11-1.fna&_nc_gid=kZ0KTX9U_xo1URX6X-at6Q&oh=00_Afs9uE1wwmaZ4MLM3wz1LMtUKbadZ4dYUNBXZJQLk-KOgQ&oe=699AA80A" alt="Workshop Exterior">
+            </div>
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/491469816_18032938292640605_1052272370159469187_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=h9oKbRamRw4Q7kNvwFBGXJw&_nc_oc=AdkcnmQEVNiXL7YIwrSaUHdT2vbN3dj8LBWKDqee3DVGCMyOQ1VPl8V48VY0KG5XzkI&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=G1eG-Io3O2WBX6gan_YEmw&oh=00_AftPe0tYLckeazh5Olz5V6jmAeM_IsfCXXL7sq7Eg5gCWg&oe=699AB57B" alt="RAM in Workshop">
+            </div>
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/473548397_18021379364640605_5197996164562913907_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_ohc=aSdU25c8ISgQ7kNvwGdgv-q&_nc_oc=AdmE4RvI7TEdE0dD5GgSDW7cx5Uq6iJrj1yWhzR3SaI-ezG9-eZT23twBLNkCaC7xRo&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=uG82Sb3ep1-POTWuo8yPOQ&oh=00_Afuy3wa_8O964_YaiAz-kb8lI4t8noOpasvvE7-I93sVXQ&oe=699AB8FA" alt="Engine Components">
+            </div>
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/473056187_18020867369640605_6754752860007566208_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_ohc=0gllFOTkVeAQ7kNvwGaZn6v&_nc_oc=AdkNzIgD71JAWxaf_OrGyvOtCCTsk8KPdXtxo9CmDFLWteVPgrqKmE1v3D9Ar5PA1qg&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=qJCb0NtT1u85Po0oRPLdzw&oh=00_AftnfdxPAPGQxN01uWzO5nH0n58QWCN1VbP3kRzJrkYrvg&oe=699A9F67" alt="Custom Truck Fabrication">
+            </div>
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t39.30808-6/484508059_655939950289095_9178711654360376940_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=9a1ffXdFw5wQ7kNvwHbeeTM&_nc_oc=AdmWMwQlV6C6rktdM5OHOySIx5Fi3pAtZP1-UI6ZYI_Yuoi_BvelOtaRM1UQ2uol6Sk&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=GkHccLiRi3b7dkkbDprgsg&oh=00_AfvyIbAygIfprhHlHhYZh4j3un67hZZGBBc864z7BkPwzQ&oe=699AC5A2" alt="Suspension Lift Kit">
+            </div>
+            <div class="gallery-item">
+                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t39.30808-6/482051601_645398391343251_6101749579449187302_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_ohc=Btm0H8P--EAQ7kNvwHkQGBq&_nc_oc=Adno2qgmHQle_Nj_UYh2SHdBqM8hqvWy1fF1VxumkZFvcIjuu5K67UsD3wIRO2KC-bs&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=MN27ZEF2nlkH0FqNQsMZpg&oh=00_AftZxnWeRwwh1JPUOzyL3l_MW9WhjGnqmOh6erv-Pfen6Q&oe=699AAA4E" alt="Detailed Engine Work">
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="https://www.instagram.com/area31industries/" target="_blank" style="color: var(--primary-blue); text-decoration: none; font-family: 'Oswald';">Follow @area31industries for more builds →</a>
         </div>
     </section>
 
@@ -277,7 +329,7 @@
                     </div>
                     <div class="service-card ram-card">
                         <h3>DIAGNOSTICS</h3>
-                        <p>Official factory diagnostic software direct from witech to the latest diagnostic uk equiptment for complex electronics.</p>
+                        <p>Official factory diagnostic software direct from witech to the latest uk equipment for complex electronics.</p>
                     </div>
                 </div>
             </div>
@@ -305,14 +357,14 @@
                 <p style="color: var(--text-gray); margin: 20px 0;">Tell us about your project or RAM service requirements.</p>
                 <p><strong>Email:</strong> enquiries@area31.co.uk</p>
                 <div class="map-container">
-                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2416.746011739546!2d0.4859!3d52.6455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTIsMzgnNDMuOCJOIDDCsDI5JzA5LjIiRQ!5e0!3m2!1sen!2suk!4v1625000000000!5m2!1sen!2suk"></iframe>
+                    <iframe width="100%" height="100%" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=REPLACE_WITH_GOOGLE_MAPS_API_KEY&q=PE33+9RH"></iframe>
                 </div>
             </div>
 
             <div class="contact-form">
                 <form action="https://formsubmit.co/admin@blucomputers.co.uk" method="POST">
                     <input type="hidden" name="_subject" value="New Inquiry: Area 31 Industries">
-                    <input type="hidden" name="_next" value="https://github.com/BluComputers/Area31/thanks.html">
+                    <input type="hidden" name="_next" value="https://blucomputers.github.io/Area31/thanks.html">
                     <input type="hidden" name="_captcha" value="true">
 
                     <div class="form-group">
