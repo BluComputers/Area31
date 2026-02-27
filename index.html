@@ -104,17 +104,22 @@
         .highlight { color: var(--primary-blue); font-weight: bold; }
         .about-img img { width: 100%; border-radius: 4px; border: 1px solid #333; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
 
-        /* Gallery Grid */
+        /* Gallery Grid - Updated for JS Rotation */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 15px;
+            min-height: 450px;
         }
         .gallery-item {
             position: relative;
             overflow: hidden;
             aspect-ratio: 4 / 3;
             border: 1px solid #222;
+            display: none; /* Hidden by default */
+        }
+        .gallery-item.active {
+            display: block;
         }
         .gallery-item img {
             width: 100%;
@@ -155,13 +160,13 @@
 
         .brand-logos-container {
             background: rgba(255,255,255,0.05);
-            padding: 50px 30px;
+            padding: 30px;
             border-radius: 4px;
             border: 1px solid #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 40px;
+            gap: 20px;
             flex-wrap: wrap;
         }
         
@@ -182,48 +187,53 @@
         .ams-link-box p { color: var(--text-white); font-family: 'Oswald'; font-size: 0.9rem; letter-spacing: 1px; }
         .ams-link-box span { color: var(--primary-blue); text-decoration: underline; }
 
-        /* Contact & Form styling */
+        /* Contact & Updated Action Panel */
         .contact-flex { display: flex; gap: 60px; background: var(--bg-panel); padding: 60px; border-radius: 8px; }
-        .contact-info, .contact-form { flex: 1; }
-        .map-container { width: 100%; height: 300px; margin-top: 30px; filter: grayscale(1) invert(0.9); border: 1px solid #333; }
+        .contact-info, .contact-actions { flex: 1; }
         
-        .form-group { margin-bottom: 20px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-family: 'Oswald'; font-size: 0.8rem; color: var(--text-gray); }
+        /* Fixed Map Container to fit perfectly */
+        .map-container { 
+            width: 100%; 
+            height: 300px; 
+            margin-top: 30px; 
+            border: 1px solid #333;
+            overflow: hidden;
+            position: relative;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
         
-        input, textarea { 
-            width: 100%; 
-            padding: 15px; 
-            background: #000; 
-            border: 1px solid #333; 
-            color: white; 
-            font-family: 'Roboto', sans-serif;
-            outline: none;
-        }
-        input:focus, textarea:focus { border-color: var(--primary-blue); }
-
-        .submit-btn { 
-            padding: 15px 40px; 
-            background: var(--primary-blue); 
-            border: none; 
-            color: #000; 
-            font-family: 'Oswald'; 
-            font-weight: bold; 
-            cursor: pointer; 
-            width: 100%; 
-            transition: 0.3s;
-        }
-        .submit-btn:hover { background: #fff; }
-
-        .directions-btn {
-            display: inline-block;
-            margin-top: 15px;
-            color: var(--primary-blue);
-            text-decoration: underline;
+        /* New Action Button Styles */
+        .action-buttons { display: flex; flex-direction: column; gap: 20px; margin-top: 30px; }
+        
+        .contact-btn {
+            padding: 20px;
+            background: var(--primary-blue);
+            border: none;
+            color: #000;
             font-family: 'Oswald';
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            text-transform: uppercase;
         }
+        .contact-btn:hover { background: #fff; }
+        .contact-btn.secondary { background: #333; color: white; }
+        .contact-btn.secondary:hover { background: #444; }
+
+        /* Callback Form Styles (Hidden by default) */
+        #callback-form-container { display: none; background: #000; padding: 20px; border: 1px solid #333; margin-top: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-family: 'Oswald'; font-size: 0.8rem; color: var(--text-gray); }
+        input, textarea { width: 100%; padding: 10px; background: #111; border: 1px solid #333; color: white; }
 
         /* Footer */
         footer { background: #050505; padding: 80px 10% 40px; border-top: 1px solid #222; font-size: 0.9rem; }
@@ -236,7 +246,6 @@
             .nav-links { display: none; }
             .about-content { grid-template-columns: 1fr; }
             .contact-flex { flex-direction: column; padding: 30px; }
-            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -270,34 +279,31 @@
             </div>
             <div class="about-text">
                 <h2>The Workshop</h2>
-                <p>Based in <span class="highlight">Norfolk</span>, Area 31 Industries is a specialised automotive hub. We bridge the gap between heavy-duty and classic European icons.</p>
-                <p>Our secure facility at Willow Farm Barn is designed for precision engineering, from bespoke engine rebuilds to full ground-up restorations.</p>
+                <p>Based in <span class="highlight">Norfolk</span>, Area 31 Industries is a specialised automotive hub. We bridge the gap between main dealers and vintage restoration companies.</p>
+                <p>Our secure facility at Willow Farm Barn is designed for servicing your pride and joy to bespoke modifications.</p>
             </div>
         </div>
     </section>
 
     <section id="gallery" class="section" style="background: #050505;">
         <div class="section-header"><h2>Workshop Gallery</h2></div>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/485264936_18028780967640605_130103217707288926_n.jpg?stp=dst-jpegr_tt6&_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_ohc=Cs_S2wvDAOYQ7kNvwEfVVQ9&_nc_oc=Adnyiaa0OH6D8NvnyLijSEifFf9vZ3YP5DGLv4U9QyFhrsDV6x8GpRvDIcyZ4hkHFHw&_nc_zt=23&se=-1&_nc_ht=scontent.flhr11-1.fna&_nc_gid=kZ0KTX9U_xo1URX6X-at6Q&oh=00_Afs9uE1wwmaZ4MLM3wz1LMtUKbadZ4dYUNBXZJQLk-KOgQ&oe=699AA80A" alt="Workshop Exterior">
-            </div>
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/491469816_18032938292640605_1052272370159469187_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=13d280&_nc_ohc=h9oKbRamRw4Q7kNvwFBGXJw&_nc_oc=AdkcnmQEVNiXL7YIwrSaUHdT2vbN3dj8LBWKDqee3DVGCMyOQ1VPl8V48VY0KG5XzkI&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=G1eG-Io3O2WBX6gan_YEmw&oh=00_AftPe0tYLckeazh5Olz5V6jmAeM_IsfCXXL7sq7Eg5gCWg&oe=699AB57B" alt="RAM in Workshop">
-            </div>
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/473548397_18021379364640605_5197996164562913907_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=13d280&_nc_ohc=aSdU25c8ISgQ7kNvwGdgv-q&_nc_oc=AdmE4RvI7TEdE0dD5GgSDW7cx5Uq6iJrj1yWhzR3SaI-ezG9-eZT23twBLNkCaC7xRo&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=uG82Sb3ep1-POTWuo8yPOQ&oh=00_Afuy3wa_8O964_YaiAz-kb8lI4t8noOpasvvE7-I93sVXQ&oe=699AB8FA" alt="Engine Components">
-            </div>
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t51.75761-15/473056187_18020867369640605_6754752860007566208_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=13d280&_nc_ohc=0gllFOTkVeAQ7kNvwGaZn6v&_nc_oc=AdkNzIgD71JAWxaf_OrGyvOtCCTsk8KPdXtxo9CmDFLWteVPgrqKmE1v3D9Ar5PA1qg&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=qJCb0NtT1u85Po0oRPLdzw&oh=00_AftnfdxPAPGQxN01uWzO5nH0n58QWCN1VbP3kRzJrkYrvg&oe=699A9F67" alt="Custom Truck Fabrication">
-            </div>
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t39.30808-6/484508059_655939950289095_9178711654360376940_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=13d280&_nc_ohc=9a1ffXdFw5wQ7kNvwHbeeTM&_nc_oc=AdmWMwQlV6C6rktdM5OHOySIx5Fi3pAtZP1-UI6ZYI_Yuoi_BvelOtaRM1UQ2uol6Sk&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=GkHccLiRi3b7dkkbDprgsg&oh=00_AfvyIbAygIfprhHlHhYZh4j3un67hZZGBBc864z7BkPwzQ&oe=699AC5A2" alt="Suspension Lift Kit">
-            </div>
-            <div class="gallery-item">
-                <img src="https://scontent.flhr11-1.fna.fbcdn.net/v/t39.30808-6/482051601_645398391343251_6101749579449187302_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=13d280&_nc_ohc=Btm0H8P--EAQ7kNvwHkQGBq&_nc_oc=Adno2qgmHQle_Nj_UYh2SHdBqM8hqvWy1fF1VxumkZFvcIjuu5K67UsD3wIRO2KC-bs&_nc_zt=23&_nc_ht=scontent.flhr11-1.fna&_nc_gid=MN27ZEF2nlkH0FqNQsMZpg&oh=00_AftZxnWeRwwh1JPUOzyL3l_MW9WhjGnqmOh6erv-Pfen6Q&oe=699AAA4E" alt="Detailed Engine Work">
-            </div>
+        
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img1.jpg" alt="Workshop Exterior"></div>
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img2.jpg" alt="RAM in Workshop"></div>
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img3.jpg" alt="Engine Components"></div>
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img4.jpg" alt="Custom Truck Fabrication"></div>
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img5.jpg" alt="Suspension Lift Kit"></div>
+            <div class="gallery-item active"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img6.jpg" alt="Detailed Engine Work"></div>
+            
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img7.jpg" alt="Workshop Work"></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img8.jpg" alt="Workshop Work"></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img9.jpg" alt="Workshop Work"></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img10.jpg" alt="Workshop Work"></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img11.jpg" alt="Workshop Work"></div>
+            <div class="gallery-item"><img src="https://raw.githubusercontent.com/BluComputers/Area31/main/img12.jpg" alt="Workshop Work"></div>
         </div>
+
         <div style="text-align: center; margin-top: 40px;">
             <a href="https://www.instagram.com/area31industries/" target="_blank" style="color: var(--primary-blue); text-decoration: none; font-family: 'Oswald';">Follow @area31industries for more builds →</a>
         </div>
@@ -312,11 +318,11 @@
             </div>
             <div class="service-card">
                 <h3>Restoration</h3>
-                <p>Specializing in classics and performance internals. We build to last.</p>
+                <p>Restoring your car to your spec with your budget</p>
             </div>
             <div class="service-card">
                 <h3>Performance</h3>
-                <p>Suspension upgrades, turbo conversions, and specialized braking systems.</p>
+                <p>Retrofitting todays technology to your vehicle your way</p>
             </div>
         </div>
     </section>
@@ -337,11 +343,11 @@
                 <div class="services-grid" style="margin-top: 30px;">
                     <div class="service-card ram-card">
                         <h3>MOPAR® PARTS</h3>
-                        <p>Genuine factory components and accessories directly from the US.</p>
+                        <p>Genuine factory components and accessories directly from the U.S.A & Europe.</p>
                     </div>
                     <div class="service-card ram-card">
                         <h3>DIAGNOSTICS</h3>
-                        <p>Official factory diagnostic software direct from witech to the latest uk equipment for complex electronics.</p>
+                        <p>Licenced with official factory WiTECH diagnostics software.</p>
                     </div>
                 </div>
             </div>
@@ -349,10 +355,11 @@
                 <div class="brand-logos-container">
                     <img src="https://static.wixstatic.com/media/713eb0_3975bcf6ba5342eea4a2f4e779f7d93d~mv2.png/v1/fill/w_170,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dodge%20logo%20white.png" alt="Dodge">
                     <img src="https://static.wixstatic.com/media/713eb0_9d1f1585a32448578d75e7ee72727be5~mv2.png/v1/fill/w_118,h_25,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/dodge%20ram%20white.png" alt="RAM">
+                    <img src="https://i.pinimg.com/736x/20/7d/fd/207dfd07597e3a36176288a8c20e0f78.jpg" alt="Mopar" style="height: 30px;">
                 </div>
                 <div class="service-card ram-card" style="margin-top: 20px;">
                     <h3>SERVICE & REPAIR</h3>
-                    <p>Comprehensive maintenance for all RAM 1500, 2500, and 3500 models. We also carry out full service and maintenance for all classic vehicles and high performance models too</p>
+                    <p>Comprehensive maintenance for all classic vehicles and Mopar high performance models.</p>
                 </div>
                 <a href="https://www.amsdodge.co.uk/" target="_blank" class="ams-link-box">
                     <p>TO BUY A NEW DODGE OR RAM <span>CLICK HERE FOR AMS DODGE</span></p>
@@ -367,48 +374,38 @@
             <div class="contact-info">
                 <h3>Start Your Build</h3>
                 <p style="color: var(--text-gray); margin: 20px 0;">Tell us about your project or RAM service requirements.</p>
-                <p><strong>Email:</strong> enquiries@area31.co.uk</p>
+                <p><strong>Email:</strong> info@area31.co.uk</p>
                 <p><strong>Location:</strong> Willow Farm Barn, PE33 9RH</p>
-                <a href="https://maps.app.goo.gl/Zz4K7dwj2EcRAzy5MM7cDTA" target="_blank" class="directions-btn">GET DIRECTIONS →</a>
                 
                 <div class="map-container">
-                    <iframe 
-                        width="100%" 
-                        height="100%" 
-                        frameborder="0" 
-                        style="border:0" 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2417.893114510368!2d0.4851457770851173!3d52.70425372221659!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d823dced0a3e67%3A0x300daec3ccb03c03!2sAREA%2031%20INDUSTRIES.%20WILLOW%20FARM%20BARN!5e0!3m2!1sen!2suk!4v1700000000000" 
-                        allowfullscreen>
-                    </iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2423.920444324611!2d0.44842987668532375!3d52.589131572079374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d823dced0a3e67%3A0x300ddcce30b93c03!2sAREA%2031%20INDUSTRIES.%20WILLOW%20FARM%20BARN!5e0!3m2!1sen!2suk!4v1772227716179!5m2!1sen!2suk" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
-            <div class="contact-form">
-                <form action="https://formsubmit.co/admin@blucomputers.co.uk" method="POST">
-                    <input type="hidden" name="_subject" value="New Inquiry: Area 31 Industries">
-                    <input type="hidden" name="_next" value="https://blucomputers.github.io/Area31/thanks.html">
-                    <div class="form-group">
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="name">Full Name</label>
-                                <input type="text" name="name" required>
-                            </div>
-                            <div class="col">
-                                <label for="email">Email Address</label>
-                                <input type="email" name="email" required>
-                            </div>
+            <div class="contact-actions">
+                <h3>Get in Touch</h3>
+                <div class="action-buttons">
+                    <a href="mailto:info@area31.co.uk?subject=Website%20contact%20form" class="contact-btn">EMAIL US</a>
+                    <button class="contact-btn secondary" onclick="toggleCallbackForm()">REQUEST A CALL BACK</button>
+                </div>
+
+                <div id="callback-form-container">
+                    <form onsubmit="sendCallbackEmail(event)">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="cb-name" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <input type="text" name="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea name="message" rows="8" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">SEND MESSAGE</button>
-                </form>
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="cb-phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>What would you like to discuss?</label>
+                            <textarea id="cb-message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="contact-btn" style="width: 100%; font-size: 0.9rem; padding: 10px;">SUBMIT REQUEST</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -433,5 +430,52 @@
         </div>
         <div class="footer-bottom"><p>© 2026 Area 31 Industries. All Rights Reserved.</p></div>
     </footer>
+
+    <script>
+        // Gallery Rotation Logic (5 seconds)
+        let currentSet = 0;
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const itemsPerSet = 6;
+        const totalSets = Math.ceil(galleryItems.length / itemsPerSet);
+
+        function rotateGallery() {
+            // Hide current set
+            for (let i = currentSet * itemsPerSet; i < (currentSet + 1) * itemsPerSet; i++) {
+                if (galleryItems[i]) galleryItems[i].classList.remove('active');
+            }
+
+            // Move to next set
+            currentSet = (currentSet + 1) % totalSets;
+
+            // Show next set
+            for (let i = currentSet * itemsPerSet; i < (currentSet + 1) * itemsPerSet; i++) {
+                if (galleryItems[i]) galleryItems[i].classList.add('active');
+            }
+        }
+        
+        // Only run rotation if more than 6 images exist
+        if (galleryItems.length > itemsPerSet) {
+            setInterval(rotateGallery, 5000);
+        }
+
+        // Callback Form Toggle
+        function toggleCallbackForm() {
+            const form = document.getElementById('callback-form-container');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+        }
+
+        // Callback Form Email Handling
+        function sendCallbackEmail(event) {
+            event.preventDefault();
+            const name = document.getElementById('cb-name').value;
+            const phone = document.getElementById('cb-phone').value;
+            const message = document.getElementById('cb-message').value;
+            
+            const subject = encodeURIComponent("Callback Request");
+            const body = encodeURIComponent(`Name: ${name}\nPhone: ${phone}\n\nDiscuss: ${message}`);
+            
+            window.location.href = `mailto:info@area31.co.uk?subject=${subject}&body=${body}`;
+        }
+    </script>
 </body>
 </html>
